@@ -102,6 +102,10 @@ input[type="number"]:focus-visible {
   outline: none;
 }
 
+input[type="number"]::placeholder {
+  color: var(--clr-grey-300);
+}
+
 input[type="radio"] {
   position: absolute;
   opacity: 0;

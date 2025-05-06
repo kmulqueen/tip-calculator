@@ -165,6 +165,17 @@ function handleReset() {
 }
 
 /**
+ * Handler function for refreshing page.
+ * Resets the form and the default tip % radio button.
+ */
+function handleRefresh() {
+  handleReset();
+  const defaultRadio = document.getElementById("15-percent");
+  defaultRadio.checked = true;
+  tipPercentage = parseInput(defaultRadio.value);
+}
+
+/**
  * Parses string inputs from the input elements in the form.
  *
  * @param {String} input String representation of a number or float.
@@ -234,4 +245,4 @@ radioButtons.forEach((btn) => {
 customTipInput.addEventListener("input", handleCustomTipInput);
 peopleInput.addEventListener("input", handlePeopleInput);
 resetButton.addEventListener("click", handleReset);
-window.addEventListener("pageshow", handleReset); // Reset when page is reloaded
+window.addEventListener("pageshow", handleRefresh); // Reset when page is reloaded

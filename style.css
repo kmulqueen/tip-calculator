@@ -207,7 +207,9 @@ legend {
 .tip__label:hover,
 .tip__label:active,
 .reset-btn:hover,
-.reset-btn:active {
+.reset-btn:active,
+.reset-btn:focus,
+.reset-btn:focus-visible {
   color: var(--clr-green-900);
   background-color: var(--clr-green-200);
 }
@@ -313,6 +315,12 @@ legend {
   cursor: pointer;
 }
 
+.reset-btn:hover,
+.reset-btn:focus,
+.reset-btn:focus-visible {
+  outline: none;
+}
+
 .attribution {
   font-size: 11px;
   text-align: center;
@@ -336,4 +344,74 @@ legend {
 
 .hidden {
   display: none;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding: 0 var(--spc-1000) var(--spc-1000);
+  }
+
+  .app {
+    border-radius: var(--br-300);
+    padding: var(--spc-600) var(--spc-1000);
+  }
+
+  .attribution {
+    padding: 0;
+    margin-top: var(--spc-200);
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    display: grid;
+    place-content: center;
+    padding: var(--spc-1000);
+  }
+
+  header {
+    padding: var(--spc-600) 0;
+  }
+
+  form {
+    grid: "bill calculation" "tip calculation" "people calculation" / 1fr 1fr;
+    row-gap: var(--spc-500);
+    column-gap: var(--spc-600);
+  }
+
+  .app {
+    padding: var(--spc-400);
+    border-radius: var(--br-400);
+  }
+
+  .bill {
+    grid-area: bill;
+  }
+
+  .tip {
+    grid-area: tip;
+  }
+
+  .tip__options {
+    grid: repeat(2, 1fr) / repeat(3, 1fr);
+  }
+
+  .people {
+    grid-area: people;
+  }
+
+  .calculation {
+    grid-area: calculation;
+    padding: var(--spc-300) var(--spc-400);
+    grid: 1fr 1fr 2fr / 1fr;
+  }
+
+  .calculation__tip-amount,
+  .calculation__total-amount {
+    font-size: var(--fs-800);
+  }
+
+  .reset-btn {
+    align-self: end;
+  }
 }

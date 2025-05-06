@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
 
     <title>Tip calculator app</title>
   </head>
@@ -38,7 +39,7 @@
       </header>
       <section class="app">
         <h1 class="visually-hidden">Tip Calculator App</h1>
-        <form novalidate>
+        <form novalidate id="app-form">
           <div
             class="bill"
             role="region"
@@ -51,9 +52,11 @@
                 <label for="bill-input" class="bill__input-label input-label"
                   >Bill</label
                 >
-                <span class="bill__error hidden error-msg">Can't be zero</span>
+                <span class="bill__error hidden error-msg" id="bill-error"
+                  >Can't be zero</span
+                >
               </div>
-              <div class="bill__form-group-inputs">
+              <div class="bill__form-group-inputs" id="bill-form-group-inputs">
                 <div class="bill__icon-container icon-container">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -76,6 +79,7 @@
                   aria-required="true"
                   placeholder="0"
                   value=""
+                  oninput="validity.valid||(value='')"
                 />
               </div>
             </div>
@@ -139,11 +143,13 @@
                 >
               </div>
             </fieldset>
-            <div class="custom hidden">
+            <div class="custom hidden" id="custom-display">
               <label for="custom-tip" class="custom__input-label input-label"
                 >Custom Tip %</label
               >
-              <span class="custom-tip__error hidden error-msg"
+              <span
+                class="custom-tip__error hidden error-msg"
+                id="custom-tip-error"
                 >Can't be zero</span
               >
 
@@ -154,7 +160,8 @@
                 class="custom__tip-input"
                 step=".01"
                 placeholder="20"
-                value="20"
+                value=""
+                oninput="validity.valid||(value='')"
               />
             </div>
           </div>
@@ -172,11 +179,14 @@
                   class="people__input-label input-label"
                   >Number of People</label
                 >
-                <span class="people__error hidden error-msg"
+                <span class="people__error hidden error-msg" id="people-error"
                   >Can't be zero</span
                 >
               </div>
-              <div class="people__form-group-inputs">
+              <div
+                class="people__form-group-inputs"
+                id="people-form-group-inputs"
+              >
                 <div class="people__icon-container icon-container">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -199,6 +209,7 @@
                   placeholder="2"
                   value=""
                   aria-required="true"
+                  oninput="validity.valid||(value='')"
                 />
               </div>
             </div>
@@ -213,14 +224,24 @@
               <p class="calculation__tip-label">
                 Tip Amount<span class="per-person">/ person</span>
               </p>
-              <p class="calculation__tip-amount" aria-live="polite">$14.27</p>
+              <p
+                class="calculation__tip-amount"
+                id="calculation-tip-amount"
+                aria-live="polite"
+              >
+                $0
+              </p>
             </div>
             <div class="calculation__total">
               <p class="calculation__total-label">
                 Total <span class="per-person">/ person</span>
               </p>
-              <p class="calculation__total-amount" aria-live="polite">
-                $132.79
+              <p
+                class="calculation__total-amount"
+                id="calculation-total-amount"
+                aria-live="polite"
+              >
+                $0
               </p>
             </div>
             <button type="button" class="reset-btn" id="reset-btn">
